@@ -68,7 +68,7 @@ class SpringcacheServiceSpec extends UnitSpec {
 		def cache3 = Mock(Ehcache)
 		cache3.name >> "cache3"
 		cache3.flush() >> { new IllegalStateException("this exception would be thrown if cache is not in $Status.STATUS_ALIVE") }
-		manager.addCache cache3
+		manager.addDecoratedCache cache3
 
 		when:
 		service.flush(["cache3", "cache1"])
@@ -269,7 +269,7 @@ class SpringcacheServiceSpec extends UnitSpec {
 		// simulate lock held on cache by another thread
 		blockingCache.name >> "blockingCache"
 		blockingCache.get("key") >> { throw new LockTimeoutException() }
-		manager.addCache(blockingCache)
+		manager.addDecoratedCache blockingCache
 
 		when:
 		service.doWithBlockingCache("blockingCache", "key") {
