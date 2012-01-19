@@ -22,7 +22,7 @@ class CacheKeySpec extends Specification {
 	static final TARGET_1 = new Object()
 	static final TARGET_2 = new Object()
 	
-	@Unroll("cache keys for #targetA.#methodA(#argsA) and #targetB.#methodB(#argsB) differ")
+	@Unroll({"cache keys for #targetA.#methodA(#argsA) and #targetB.#methodB(#argsB) differ"})
 	def "cache keys differ based on target, method name and arguments"() {
 		given:
 		def key1 = CacheKey.generate(targetA, methodA, argsA)
@@ -47,7 +47,7 @@ class CacheKeySpec extends Specification {
 		TARGET_1 | "x"     | [[1] as int[]]      | TARGET_1 | "x"     | [1]
 	}
 	
-	@Unroll("cache keys for multiple calls to the same method passing #args are equal")
+	@Unroll({"cache keys for multiple calls to the same method passing #args are equal"})
 	def "cache keys are equal when target, method name and arguments are the same"() {
 		given:
 		def key1 = CacheKey.generate(TARGET_1, "x", args)

@@ -22,7 +22,7 @@ class ShardedCacheSpec extends AbstractContentCachingSpec {
 		tearDownUsers()
 	}
 
-	@Unroll("#username only sees their own profile")
+	@Unroll({"#username only sees their own profile"})
 	def "a user only sees their own profile"() {
 		given: "a user is logged in"
 		to LoginPage
@@ -43,7 +43,7 @@ class ShardedCacheSpec extends AbstractContentCachingSpec {
 		"roundhouse" | "Profile: Chuck Norris"
 	}
 
-	@Unroll("when re-visiting the profile page #username sees their own profile delivered from cache")
+	@Unroll({"when re-visiting the profile page #username sees their own profile delivered from cache"})
 	def "when re-visiting the profile page a user sees their own profile delivered from cache"() {
 		given: "a user is logged in"
 		to LoginPage

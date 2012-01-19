@@ -34,7 +34,7 @@ class ContentCacheParametersSpec extends UnitSpec {
 		ApplicationHolder.application = application
 	}
 
-	@Unroll("controller is #expectedController and action is #expectedAction when controllerName is '#controllerName' and actionName is '#actionName'")
+	@Unroll({"controller is #expectedController and action is #expectedAction when controllerName is '#controllerName' and actionName is '#actionName'"})
 	def "controller and action are identified based on the request context"() {
 		given:
 		def webRequest = Mock(GrailsWebRequest)

@@ -39,7 +39,7 @@ class SpringcacheServiceSpec extends UnitSpec {
 		service = new SpringcacheService(springcacheCacheManager: manager)
 	}
 
-	@Unroll("calling flush(#flushArgument) flushes the correct cache or caches")
+	@Unroll({"calling flush(#flushArgument) flushes the correct cache or caches"})
 	def "calling flush flushes the correct cache or caches"() {
 		given:
 		cache1.put(new Element("key", "value"))
@@ -114,7 +114,7 @@ class SpringcacheServiceSpec extends UnitSpec {
 		cache2.statistics.cacheMisses == 0L
 	}
 
-	@Unroll("doWithCache retrieves #value from cache")
+	@Unroll({"doWithCache retrieves #value from cache"})
 	def "doWithCache retrieves value from cache"() {
 		given:
 		cache1.put(new Element("key", value))
@@ -299,7 +299,7 @@ class SpringcacheServiceSpec extends UnitSpec {
 		blockingCache.get("key") == null
 	}
 
-	@Unroll("the #methodName method passes through when the plugin is disabled")
+	@Unroll({"the #methodName method passes through when the plugin is disabled"})
 	def "caching methods pass through when the plugin is disabled"() {
 		given:
 		mockConfig "springcache.enabled = false"
@@ -320,7 +320,7 @@ class SpringcacheServiceSpec extends UnitSpec {
 		methodName << ["doWithCache", "doWithBlockingCache"]
 	}
 
-	@Unroll("the #methodName method is a no-op when the plugin is disabled")
+	@Unroll({"the #methodName method is a no-op when the plugin is disabled"})
 	def "flush and clear methods are no-ops when the plugin is disabled"() {
 		given:
 		mockConfig "springcache.enabled = false"

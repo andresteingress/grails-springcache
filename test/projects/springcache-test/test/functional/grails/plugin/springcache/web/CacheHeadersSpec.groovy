@@ -54,7 +54,7 @@ class CacheHeadersSpec extends Specification {
 		response1.headers[ETAG].value == response2.headers[ETAG].value
 	}
 
-	@Unroll("a 304 is served rather than a cached response if the client sends #headers")
+	@Unroll({"a 304 is served rather than a cached response if the client sends #headers"})
 	def "a 304 is served rather than a cached response if the client has cached the response"() {
 		given: "the cache is primed by an previous request"
 		http.get uri: "http://localhost:8080/album/show/$album.id"
@@ -76,7 +76,7 @@ class CacheHeadersSpec extends Specification {
 		"head" | [(IF_NONE_MATCH): "$album.id:$album.version"]
 	}
 
-	@Unroll("the cached response is served if the client sends #headers")
+	@Unroll({"the cached response is served if the client sends #headers"})
 	def "the cached response is served if the client's cached version does not match"() {
 		given: "the cache is primed by an previous request"
 		def response1 = http.get(uri: "http://localhost:8080/album/show/$album.id")

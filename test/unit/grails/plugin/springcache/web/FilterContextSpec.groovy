@@ -52,7 +52,7 @@ class FilterContextSpec extends Specification {
 		RequestContextHolder.requestAttributes = request
 	}
 
-	@Unroll("shouldCache returns #shouldCache when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"shouldCache returns #shouldCache when controller is '#controllerName' and action is '#actionName'"})
 	def "a request is considered cachable if there is an annotation on the controller or action"() {
 		given: "there is a request context"
 		request.controllerName >> controllerName
@@ -74,7 +74,7 @@ class FilterContextSpec extends Specification {
 	    "cachedTest"   | "blah"     | true
 	}
 
-	@Unroll("shouldFlush returns #shouldFlush when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"shouldFlush returns #shouldFlush when controller is '#controllerName' and action is '#actionName'"})
 	def "a request is considered flushable if there is an annotation on the controller or action"() {
 		given: "there is a request context"
 		request.controllerName >> controllerName
@@ -94,7 +94,7 @@ class FilterContextSpec extends Specification {
 		"flushingTest" | "update2"  | true
 	}
 
-	@Unroll("cache name is '#expectedCacheName' when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"cache name is '#expectedCacheName' when controller is '#controllerName' and action is '#actionName'"})
 	def "the cache name is identified based on the annotation on the controller or action"() {
 		given: "there is a request context"
 		request.controllerName >> controllerName
@@ -114,7 +114,7 @@ class FilterContextSpec extends Specification {
 	    "cachedTest"   | "blah"     | "testControllerCache"
 	}
 
-	@Unroll("cannot get cache name when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"cannot get cache name when controller is '#controllerName' and action is '#actionName'"})
 	def "cannot get cache name for a non-caching request"() {
 		given: "a request for a non-caching action"
 		request.controllerName >> controllerName
@@ -137,7 +137,7 @@ class FilterContextSpec extends Specification {
 		"flushingTest" | "update2"       
 	}
 
-	@Unroll("cache names are #expectedCacheNames when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"cache names are #expectedCacheNames when controller is '#controllerName' and action is '#actionName'"})
 	def "the cache names are identified based on the annotation on the controller or action"() {
 		given: "there is a request context"
 		request.controllerName >> controllerName
@@ -155,7 +155,7 @@ class FilterContextSpec extends Specification {
 		"flushingTest" | "update3"  | ["testControllerCache", "listActionCache"]
 	}
 
-	@Unroll("cannot get cache names when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"cannot get cache names when controller is '#controllerName' and action is '#actionName'"})
 	def "cannot get cache names for a non-flushing request"() {
 		given: "a request for a non-flushing action"
 		request.controllerName >> controllerName
@@ -193,7 +193,7 @@ class FilterContextSpec extends Specification {
 		context.cacheName == "ehcaCnoitcAtsil"
 	}
 
-	@Unroll("key generator is #keyGeneratorMatcher when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"key generator is #keyGeneratorMatcher when controller is '#controllerName' and action is '#actionName'"})
 	def "a key generator bean name can be specified at controller or action level or is defaulted otherwise"() {
 		given: "there is a request context"
 		request.controllerName >> controllerName
@@ -218,7 +218,7 @@ class FilterContextSpec extends Specification {
 		"restfulTest"  | "list"     | instanceOf(WebContentKeyGenerator)
 	}
 	
-	@Unroll("cannot get key generator when controller is '#controllerName' and action is '#actionName'")
+	@Unroll({"cannot get key generator when controller is '#controllerName' and action is '#actionName'"})
 	def "cannot get key generator for a non-caching request"() {
 		given: "a request for a non-flushing action"
 		request.controllerName >> controllerName

@@ -33,7 +33,7 @@ class ContentNegotiationSpec extends Specification {
 		springcacheService.clearStatistics()
 	}
 
-	@Unroll("content requested with content type '#contentType' is cached separately")
+	@Unroll({"content requested with content type '#contentType' is cached separately"})
 	def "content requested with different formats is cached separately"() {
 		when: "the latest album module is requested in a particular format"
 		def response = http.get(uri: "http://localhost:8080/latest/albums", headers : [(ACCEPT) : contentType])

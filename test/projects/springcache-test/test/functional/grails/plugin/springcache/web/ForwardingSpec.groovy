@@ -16,7 +16,7 @@ class ForwardingSpec extends Specification {
 
 	private RESTClient http = new RESTClient("http://localhost:8080/")
 
-	@Unroll("an initial hit on #action primes the cache")
+	@Unroll({"an initial hit on #action primes the cache"})
 	def "an initial hit on an action primes the cache"() {
 		when:
 		def response = http.get(path: "/forwarding/$action")
@@ -36,7 +36,7 @@ class ForwardingSpec extends Specification {
 		"cachedForwardsToCached"   | 1    | 1
 	}
 
-	@Unroll("a subsequent hit on #action primes the cache")
+	@Unroll({"a subsequent hit on #action primes the cache"})
 	def "a subsequent hit on an action hits the cache"() {
 		when:
 		def response = http.get(path: "/forwarding/$action")

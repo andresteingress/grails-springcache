@@ -37,7 +37,7 @@ class SpringcacheService implements ApplicationContextAware {
 	 * @param cacheNamePatterns can be a single cache name or a regex pattern or a Collection/array of them.
 	 */
 	void flush(cacheNamePatterns) {
-		if (!enabled) return
+		if (!SpringcacheService.enabled) return
 		if (cacheNamePatterns instanceof String) cacheNamePatterns = [cacheNamePatterns]
 		springcacheCacheManager.cacheNames.each { name ->
 			if (cacheNamePatterns.any { name ==~ it }) {
@@ -50,7 +50,7 @@ class SpringcacheService implements ApplicationContextAware {
 	 * Flushes all caches held by the service's cache manager.
 	 */
 	void flushAll() {
-		if (!enabled) return
+		if (!SpringcacheService.enabled) return
 		springcacheCacheManager.cacheNames.each {
 			flushNamedCache(it)
 		}
@@ -60,7 +60,7 @@ class SpringcacheService implements ApplicationContextAware {
 	 * Clears statistics for all caches held by the service's cache manager.
 	 */
 	void clearStatistics() {
-		if (!enabled) return
+		if (!SpringcacheService.enabled) return
 		springcacheCacheManager.cacheNames.each {
 			springcacheCacheManager.getEhcache(it)?.clearStatistics()
 		}
@@ -75,7 +75,7 @@ class SpringcacheService implements ApplicationContextAware {
 	 * @return The cached value if a cache entry exists or the return value of the closure otherwise.
 	 */
 	def doWithCache(String cacheName, Serializable key, Closure closure) {
-		if (!enabled) return closure()
+		if (!SpringcacheService.enabled) return closure()
 		def cache = getOrCreateCache(cacheName)
 		if (cache instanceof BlockingCache) {
 			// delegate so that we get the special exception handling for blocking caches
@@ -95,7 +95,7 @@ class SpringcacheService implements ApplicationContextAware {
 	 * @return The cached value if a cache entry exists or the return value of the closure otherwise.
 	 */
 	def doWithBlockingCache(String cacheName, Serializable key, Closure closure) {
-		if (!enabled) return closure()
+		if (!SpringcacheService.enabled) return closure()
 		def cache = getOrCreateBlockingCache(cacheName)
 		try {
 			return doWithCacheInternal(cache, key, closure)
@@ -116,7 +116,7 @@ class SpringcacheService implements ApplicationContextAware {
 	 * @return a BlockingCache instance.
 	 */
 	BlockingCache getOrCreateBlockingCache(String name) {
-		if (!enabled) return null
+		if (!SpringcacheService.enabled) return null
 		def cache = getOrCreateCache(name)
 		if (cache instanceof BlockingCache) {
 			return cache
@@ -134,7 +134,7 @@ class SpringcacheService implements ApplicationContextAware {
 	 * @return a cache instance.
 	 */
 	Ehcache getOrCreateCache(String name) {
-		if (!enabled) return null
+		if (!SpringcacheService.enabled) return null
 		Ehcache cache = springcacheCacheManager.getEhcache(name)
 		if (!cache) {
 			if (autoCreateCaches) {
